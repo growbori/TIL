@@ -106,3 +106,15 @@ TIL(Today I Learned)을 통해 내가 학습하는 것을 기록
 3. README.md 생성 및 지금까지의 수업 내용을 정리하고 commit을 설정
 4. TIL 원격 저장소를 추가
 5. commit 목록을 push
+
+```
+git init # 설정 초기화
+git add . # 변경사항 더하기
+git commit -m 'README.md' # 변경한 내용 커밋하기
+git push https://github.com/growbori/TIL.git # 내 github로 발송!
+```
+> README.md
+- 프로젝트에 대한 설명, 사용 방법, 문서화된 정보 등을 포함하는 역할
+- Markdown 형식으로 작성되며, 프로젝트의 사용자, 개발자 혹은 기여자들에게 프로젝트에 대한 전반적인 이해와 활용 방법을 제공하는데 사용
+- 주로 프로젝트의 소개, 설치 및 설정 방법, 사용 예시, 라이선스 정보, 기여 방법 등을 포함함
+- 반드시 저장소 최상단에 위치해야 원격 저장소에서 올바르게 출력됨
