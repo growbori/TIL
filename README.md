@@ -138,6 +138,10 @@ git commit -m "README.md" # 변경사항 커밋하기
 git push -u origin master # git 으로 push해서 내 아이디로 잘 올라가는지 확인!
 ```
 
+> git clone 해서 폴더 내려받는 방법
+
+![](https://velog.velcdn.com/images/lurelight/post/44927d87-ef7c-4ace-ac5c-8881842fadb6/image.png)
+
 
 
 
