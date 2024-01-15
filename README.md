@@ -121,6 +121,24 @@ git push https://github.com/growbori/TIL.git # 내 github로 발송!
 
 ---
 
+> **git 자격증명 관리자를 변경하였음에도 불구하고 오류가 발생했을 경우**
+
+```
+git config --global -l # 지금 현재 컴퓨터에서 master가 누구인지 확인
+user.email=kevinyeonkr@naver.com
+user.name=shyeon
+
+git config --global user.email # "grow.boribori@gmail.com" # email을 내걸로 변경
+git config --global user.name # "grow.boribori" # 내 닉네임으로 변경
+
+git add . # git 파일에 변경사항 적기
+
+git commit -m "README.md" # 변경사항 커밋하기
+
+git push -u origin master # git 으로 push해서 내 아이디로 잘 올라가는지 확인!
+```
+
+
 
 
 
