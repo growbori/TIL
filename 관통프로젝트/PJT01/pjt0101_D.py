@@ -1,6 +1,13 @@
 import pprint
 import requests
 
+# 전체 정기예금의 응답을 json 형태로 변환하여 key 값만 출력하시오.
+# 공식문서의 요청변수와 예제 요청결과(JSON) 부분을 참고합니다.
+# [힌트] 아래와 같은 순서로 데이터를 출력하며 진행합니다.
+# 1. 응답을 json 형식으로 변환합니다.
+# 2. key 값이 "result" 인 데이터에 모든 정보가 담겨 있습니다.
+# 3. key 값이 "result" 인 데이터의 key 값만 출력합니다.
+
 def get_deposit_products():
   # 본인의 API KEY 로 수정합니다.
     api_key = "0df7858bc42fc0d4283dd9d03006a81e"
@@ -11,55 +18,36 @@ def get_deposit_products():
  
     result = requests.get(url).json()
 
-    result_main = result['result']['baseList']
+    result_len = len(result['result']['baseList'])
 
-    result_option = result['result']['optionList']
+    result_opt = result['result']['optionList'][0]['fin_co_no']
 
-    result_len_opt = len(result_option)
+    result_main = result['result']['baseList'][0]['fin_co_no']
 
-    result_len_main = len(result_main)
 
-    new_dict_opt = {}
-
-    new_dict_main = {}
-
-    for i in range(result_len_opt):
-        new_dict_opt['금융상품코드'] = result_option[i]['fin_co_no']
-        new_dict_opt['저축 금리'] = result_option[i]['intr_rate']
-        new_dict_opt['저축 기간'] = result_option[i]['intr_rate2']
-        new_dict_opt['저축금리유형'] = result_option[i]['intr_rate_type']
-        new_dict_opt['저축금리유형명'] = result_option[i]['intr_rate_type_nm']
-        new_dict_opt['최대 우대금리'] = result_option[i]['save_trm'] 
-
-        # print(new_dict_opt)
-    won = []
-
-      for i in range(result_len_main):
-        new_dict_main['금융회사명'] = result_main[i]['kor_co_nm']
-        new_dict_main['금융상품명'] = result_main[i]['fin_prdt_nm']
-        new_dict_main['금리정보'] = result_main[i]['mtrt_int']
-
-        won.append({'금융회사명' : result_main[i]['kor_co_nm'], '금융상품명' : result_main[i]['fin_prdt_nm'], '금리정보' : result_main[i]['mtrt_int']})
+    value = []
+    for i in range(result_len):
+        if result_opt == result_main:
         
-        print(won)
-        
-        pprint.pprint(get_deposit_products())  
-        
-        # print(new_dict_main)
-        won = []
-        # if new_dict_main['fin_co_no'] == new_dict_opt['fin_co_no']:
-        #     won.append({'금융회사명' : result[i]['fin_co_no'],)
-            
-        
+            value.append({'저축 금리' : result['result']['optionList'][i]['intr_rate'], '저축 기간' : result['result']['optionList'][i]['intr_rate2'], '저축금리유형' : result['result']['optionList'][i]['intr_rate_type'], '저축금리유형명' : result['result']['optionList'][i]['intr_rate_type_nm'], '최대 우대금리' : result['result']['optionList'][i]['save_trm']})
+
+    info = []
+
+    for i in range(len(value)):
+    
+        info.append({'금리정보' : value, '금융상품명' : result['result']['baseList'][i]['fin_prdt_nm'], '금융회사명' : result['result']['baseList'][i]['kor_co_nm']})
+
+    pprint.pprint(info)
+
+    
+
+# pprint.pprint(get_deposit_products())
     
 # 아래 코드는 수정하지 않습니다.
 if __name__ == '__main__':
     # json 형태의 데이터 반환
     result = get_deposit_products()
     # prrint.prrint(): json 을 보기 좋은 형식으로 출력
-    pprint.pprint(result)
+    # pprint.pprint(result)
 
-    # 금융회사명 = 'kor_co_nm'
-    # 금융상품명 = 'fin_prdt_nm'
-    # 금리정보 = 'mtrt_int'
-    # 'fin_co_no'이게 같아야 함
+# new_dict_main['금융회사명'] = result_main[i]['kor_co_nm']
