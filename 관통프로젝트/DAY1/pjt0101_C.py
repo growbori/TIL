@@ -33,15 +33,6 @@ def get_deposit_products():
 pprint.pprint(get_deposit_products())
     
 
-
-
-
-
-    
-
-
-
-
 # 아래 코드는 수정하지 않습니다.
 if __name__ == '__main__':
     # json 형태의 데이터 반환
