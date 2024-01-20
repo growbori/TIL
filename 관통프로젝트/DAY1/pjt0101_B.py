@@ -17,7 +17,7 @@ def get_deposit_products():
     url = f'http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
  
     result = requests.get(url).json()
-    return result['result']['baseList']
+    return result['result']['baseList'] # result 의 값들 중 'baselist'에 해당하는 값들만 불러오기 
     
     
 # 아래 코드는 수정하지 않습니다.

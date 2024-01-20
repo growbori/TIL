@@ -18,19 +18,19 @@ def get_deposit_products():
  
     result = requests.get(url).json()
 
-    result = result['result']['optionList']
+    result = result['result']['optionList'] # 'result 아래의 값들 중 'optionlist'에 해당하는 값들만 불러오기
 
-    result_len = len(result)
+    result_len = len(result) # for 문을 돌리기 위해서 전체 result의 길이 구하기
 
-    new_dict = []
+    new_dict = [] # result 에서 원하는 값들만 골라내서 list 형태로 정리하기 위해 빈 리스트 생성
 
     for i in range(result_len):
         
         new_dict.append({'금융상품코드' : result[i]['fin_co_no'], '저축 금리' : result[i]['intr_rate'], '저축 기간' : result[i]['intr_rate2'], '저축금리유형' : result[i]['intr_rate_type'], '저축금리유형명' : result[i]['intr_rate_type_nm'], '최대 우대금리' : result[i]['save_trm']})
 
-    return new_dict
+    return new_dict  # 구하고자 하는 값들을 new_dict에 append함 (list 에 요소들을 추가하기 위해선 append를 사용해야 함)
 
-pprint.pprint(get_deposit_products())
+pprint.pprint(get_deposit_products()) # get_deposit_products 함수에서 new_dict 값들을 리턴 받았으니, 그 값들을 pprint 함수를 사용해서 예쁘게 정리!
     
 
 # 아래 코드는 수정하지 않습니다.

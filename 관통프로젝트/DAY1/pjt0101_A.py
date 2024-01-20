@@ -10,14 +10,14 @@ import requests
 
 def get_deposit_products():
   # 본인의 API KEY 로 수정합니다.
-    api_key = "0df7858bc42fc0d4283dd9d03006a81e"
+    api_key = "0df7858bc42fc0d4283dd9d03006a81e" # 사이트에서 api코드 발급받기! 정확한 사이트에서 내려받아야 함!
 
   # 요구사항에 맞도록 이곳의 코드를 수정합니다.
 
-    url = f'http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
+    url = f'http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1' 
  
-    result = requests.get(url).json()
-    return result['result'].keys()
+    result = requests.get(url).json() # url을 json 형식으로 변환하기
+    return result['result'].keys() # result로 정리한 데이터에서 'result'의 keys값들만 받도록 정리
     
     
 # 아래 코드는 수정하지 않습니다.

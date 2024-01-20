@@ -18,26 +18,27 @@ def get_deposit_products():
  
     result = requests.get(url).json()
 
-    result_len = len(result['result']['baseList'])
+    result_len = len(result['result']['baseList']) # 'result 아래의 값들 중 'baselist'에 해당하는 값들만 불러오기
 
-    result_opt = result['result']['optionList'][0]['fin_co_no']
+    result_opt = result['result']['optionList'][0]['fin_co_no'] # 'result 아래 'optionlist' 에서 금융 상품 코드가 같으면 출력한다는 조건을 구하기 위해 optionlist 하위의 금융 상품 코드인 'fin_co_no'를 정리한다.
 
-    result_main = result['result']['baseList'][0]['fin_co_no']
+    result_main = result['result']['baseList'][0]['fin_co_no'] # 'result 아래 'baselist' 에서 금융 상품 코드가 같으면 출력한다는 조건을 구하기 위해 baselist 하위의 금융 상품 코드인 'fin_co_no'를 정리한다.
 
 
-    value = []
+    value = [] # 리스트 안에 있는 딕셔너리에 또 리스트 값을 나타내기 위해 빈 리스트를 생성한다.
+
     for i in range(result_len):
-        if result_opt == result_main:
+        if result_opt == result_main: # 금융 상품코드가 같으면 출력한다는 조건문을 작성한다.
         
             value.append({'저축 금리' : result['result']['optionList'][i]['intr_rate'], '저축 기간' : result['result']['optionList'][i]['intr_rate2'], '저축금리유형' : result['result']['optionList'][i]['intr_rate_type'], '저축금리유형명' : result['result']['optionList'][i]['intr_rate_type_nm'], '최대 우대금리' : result['result']['optionList'][i]['save_trm']})
 
-    info = []
+    info = [] # 바깥에 있는 리스트에 한번 더 정리하기 위해 빈 리스트를 생성한다.
 
-    for i in range(len(value)):
+    for i in range(len(value)): # 아까 정리한 value의 길이(크기) 만큼만 for 문을 돌리면 되므로 해당 범위로 설정한다.
     
         info.append({'금리정보' : value, '금융상품명' : result['result']['baseList'][i]['fin_prdt_nm'], '금융회사명' : result['result']['baseList'][i]['kor_co_nm']})
 
-    pprint.pprint(info)
+    pprint.pprint(info) # 최종! 구하고자 하는 데이터를 구한다!
 
     
 
