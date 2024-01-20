@@ -4,7 +4,7 @@ from pprint import pprint
 
 def book_info(book):
 
-    book_data = {'author' : book['author'], 'categoryId' : book['categoryId'], 'cover' : book['cover'], 'description' : book['description'], 'id' : book['id'], 'priceSales' : book['priceSales'], 'title' : ['title']}
+    book_data = {'author' : book['author'], 'categoryId' : book['categoryId'], 'cover' : book['cover'], 'description' : book['description'], 'id' : book['id'], 'priceSales' : book['priceSales'], 'title' : book['title']}
 
     return book_data
 

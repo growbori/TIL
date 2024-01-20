@@ -2,9 +2,23 @@ import json
 from pprint import pprint
 
 
+
 def book_info(book, categories):
-    pass
-    # 여기에 코드를 작성합니다.
+
+    cata_Name = []
+    for i in range (len(categories)):
+        for j in range(len(book['categoryId'])):
+
+            if book['categoryId'][j] == categories[i]['id']:
+
+                cata_Name.append(categories[i]['name']) # 문학, 영미소설 둘다 들어오게 하는 방법 고민해보기!
+                
+                book_data = {'author' : book['author'], 'categoryName' : cata_Name, 'cover' : book['cover'], 'description' : book['description'], 'id' : book['id'], 'priceSales' : book['priceSales'], 'title' : book['title']}
+
+    return book_data
+ 
+
+
 
 
 # 아래의 코드는 수정하지 않습니다.
