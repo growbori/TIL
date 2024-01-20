@@ -3,8 +3,11 @@ from pprint import pprint
 
 
 def book_info(book):
-    pass
-    # 여기에 코드를 작성합니다.
+
+    book_data = {'author' : book['author'], 'categoryId' : book['categoryId'], 'cover' : book['cover'], 'description' : book['description'], 'id' : book['id'], 'priceSales' : book['priceSales'], 'title' : ['title']}
+
+    return book_data
+
 
 
 # 아래의 코드는 수정하지 않습니다.
