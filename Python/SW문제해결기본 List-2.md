@@ -162,3 +162,6 @@ triplet 먼저 찾고 run을 찾아야 함!
 **자주 실수하는 오답**
 
 ![](https://velog.velcdn.com/images/lurelight/post/b3bd9cc2-6cfe-497e-87bd-c67c6f55f6e4/image.png)
+
+
+수정완료
