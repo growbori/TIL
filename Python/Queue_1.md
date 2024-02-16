@@ -1,370 +1,167 @@
-### **큐 (Queue)**
+### **BFS**
 ---
 
-**큐 (Queue)의 특성**
+**BFS (Breadth First Search)**
 
-스택과 마찬가지로 삽입과 삭제의 위치가 제한적인 자료구조
+그래프를 탐색하는 방법에는 크게 두 가지가 있음
 
-- 큐의 뒤에서는 삽입만 하고, 큐의 앞에서는 삭제만 이루어지는 구조
+- 깊이 우선 탐색 (Depth First Search, BFS)
 
-- 선입선출 구조(FIFO : First In First Out)
+- 너비 우선 탐색 (Breadth First Search, BFS)
 
-- 큐에서 삽입한 순서대로 원소가 저장되어, 가장 먼저 삽입(First In)된 원소는 가장 먼저 삭제(First Out) 된다.
+너비 우선 탐색은 탐색 시작점의 <span style='color:red;'>인접한 정점들을 먼저 모두 차례로 방문</span>한 후에, 방문했던 정점을 시작점으로 하여 다시 인접한 정점들을 차례로 방문하는 방식
 
-스택은 후입 선출, 큐는 선입 선출!
+인접한 정점들에 대해 탐색을 한 후, 차례로 다시 너비우선탐색을 진행해야 하므로 <span style='color:red;'>선입선출 형태의 자료구조인 큐를 활용함</span>
 
-![](https://velog.velcdn.com/images/lurelight/post/acec2f7b-fda3-488f-ae3e-8dce8b87837a/image.png)
+![](https://velog.velcdn.com/images/lurelight/post/7dbd45d0-7337-462a-b242-9d1cc5f64f2f/image.png)
 
-![](https://velog.velcdn.com/images/lurelight/post/5b411e1a-a2b5-425d-ae5e-71f072be7bf7/image.png)
+출발 노드로 부터의 거리 혹은 시간을 구해야 할 때 사용
 
-![](https://velog.velcdn.com/images/lurelight/post/3b553f6e-4d55-4a23-9c9d-184730239041/image.png)
+![](https://velog.velcdn.com/images/lurelight/post/a1d410f3-aa08-40be-a76a-61397d3ad9ec/image.png)
 
-![](https://velog.velcdn.com/images/lurelight/post/c00a97dc-dac7-4a30-b4cd-697c848a91a3/image.png)
+![](https://velog.velcdn.com/images/lurelight/post/05f18e49-9ba9-4a60-bf20-419312c9eaa1/image.png)
 
-1) 공백 큐 생성 : createQueue()
+![](https://velog.velcdn.com/images/lurelight/post/2d0803ed-e6c2-4142-b5e7-7f2bed948a1e/image.png)
 
-크기가 N인 배열을 생성
+![](https://velog.velcdn.com/images/lurelight/post/de6c1fc1-8672-4ef4-bba6-784087652efd/image.png)
 
-front, rear는 -1로 초기화
+![](https://velog.velcdn.com/images/lurelight/post/6013496c-3d57-4b1e-90fe-fc25f0a7e60a/image.png)
 
-front 마지막으로 꺼내진 위치
+C에 인접하면서 방문하지 않은 점
 
-Q = [0] * 10
+A는 인접이지만 이미 방문했기 때문에 제외
 
-front = rear = -1
+![](https://velog.velcdn.com/images/lurelight/post/51da9829-aa1d-4676-b5d3-e6783ca973f7/image.png)
 
-2) 원소 A 삽입 : enQueue(A)
+![](https://velog.velcdn.com/images/lurelight/post/5b77f192-14d1-4bda-b3ba-21d3999a2c64/image.png)
 
-rear = 마지막 저장 위치
+![](https://velog.velcdn.com/images/lurelight/post/af2df266-7a25-41f8-8ef1-fd0afd981aec/image.png)
 
-rear 는 원래 자리에서 1 더하고 A를 저장함
+![](https://velog.velcdn.com/images/lurelight/post/5b0e803f-811a-40b9-bed8-3649ca24f532/image.png)
 
-rear += 1
+![](https://velog.velcdn.com/images/lurelight/post/afb73eb3-ebba-491f-b97b-30cd000974ed/image.png)
 
-Q[rear] = A
+![](https://velog.velcdn.com/images/lurelight/post/44437fbc-11fc-4a0e-95e3-1e016cdc0f61/image.png)
 
-3) 원소 B 삽입 : enQueue(B):
+![](https://velog.velcdn.com/images/lurelight/post/98ecaf18-cb39-4824-9b69-0125d8a04f8e/image.png)
 
-rear 의 원래 자리에서 1 더하고 B를 저장함
+### **BFS 예제**
+---
 
-![](https://velog.velcdn.com/images/lurelight/post/8b901928-1306-4132-ab1b-c9e43df8123c/image.png)
+![](https://velog.velcdn.com/images/lurelight/post/4d87e87e-ca89-4e21-b5c9-34befe93be30/image.png)
 
-4) 원소 반환 / 삭제 : deQueue()
+![](https://velog.velcdn.com/images/lurelight/post/a6ef88e7-748d-4e90-aaea-1f48be3e3c03/image.png)
 
-front 를 하나 증가시켜줌
+아까랑 다르게 Q에 요소를 넣을 경우 visited 에 방문 표시를 남김
 
-front += 1
+![](https://velog.velcdn.com/images/lurelight/post/74c30e61-ae3e-4bee-8fec-43e85a159b4f/image.png)
 
-tmp = Q[front]
+가장 빠른 속도로 처리됨 -> 트리 같은 형태
 
-5) 원소 C 삽입 : enQueue(C)
+![](https://velog.velcdn.com/images/lurelight/post/31a510c5-6cca-4644-a772-d9651ef97805/image.png)
 
-rear 의 원래 자리에서 1 더하고 C를 저장함
+![](https://velog.velcdn.com/images/lurelight/post/e3ef96d3-9ba0-4699-a724-a7e6e87f3f35/image.png)
 
-6) 원소 반환/삭제 : deQueue()
-
-7) 원소 반환/삭제 : deQueue()
-
-가장 마지막에 들어온 원소가 빠짐
-
-front 랑 rear 가 같음
-
-if front == rear:
-
-**선형큐**
-
-1차원 배열을 이용한 큐
-
-- 큐의 크기 = 배열의 크기
-
-- front : 마지막으로 삭제된 인덱스
-
-- rear : 저장된 마지막 원소의 인덱스
-
-상태표현
-
-- 초기 상태 : front = rear = -1
-
-- 공백 상태 : front == rear
-
-- 포화 상태 : rear == n - 1 (n : 배열의 크기, n-1 : 배열의 마지막 인덱스)
-
-**초기 공백 큐 생성**
-
-크기 n 인 1차원 배열 생성
-
-front 와 rear를 -1로 초기화
-
-**삽입 : enQueue(item)**
-
-마지막 원소 뒤에 새로운 원소를 삽입하기 위해
-
-1) rear 값을 하나 증가시켜 새로운 원소를 삽입할 자리를 마련
-
-2) 그 인덱스에 해당하는 배열원소 Q[rear]에 item을 저장
-
-![](https://velog.velcdn.com/images/lurelight/post/61e5d51a-49ac-408f-a7c4-d64f68d40de9/image.png)
-
-**삭제 : deQueue()**
-
-가장 앞에 있는 원소를 삭제하기 위해
-
-1) front 값을 하나 증가시켜 큐에 남아있는 첫 번째 원소 이동
-
-2) 새로운 첫 번째 원소를 리턴 함으로써 삭제와 동일한 기능 함
-
-![](https://velog.velcdn.com/images/lurelight/post/07c9cfd0-07d6-4953-98c8-cd91cd4dfebb/image.png)
-
-**공백상태 및 포화상태 검사 : isEmpty(), isFull()**
-
-공백상태 : front == rear
-
-포화상태 : rear == n-1 (n : 배열의 크기, n-1 : 배열의 마지막 인덱스)
-
-![](https://velog.velcdn.com/images/lurelight/post/2e881498-96b3-4d71-b00b-d6c0d69ecab9/image.png)
-
-**검색 : Qpeek()**
-
-가장 앞에 있는 원소를 검색하여 반환하는 연산
-
-현재 front의 한자리 뒤(front+1)에 있는 원소, 즉 큐의 첫번째에 있는 원소를 반환
-
-![](https://velog.velcdn.com/images/lurelight/post/f95b700d-eb1e-4060-88bb-3c8eed8b7406/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/90f04301-69e4-413c-934e-2f85788c6a9f/image.png)
+거리에 관련된 정보를 구하고자 할 땐 BFS를 쓰는 것이 좋음
 
 ```
-queue = []
+'''
+V E : V 1~V 번 까지 V 개의 정점. E 개의 간선
+E개의 간선 정보
+7 8
+1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 7
+'''
+def bfs(s, N) :     # 시작정점 s, 노드 개수 N
+    q = []  # 큐
+    visited = [0] * (N+1)   # visited
+    q.append(s)         # 시작점 인큐
+    visited[s] = 1      # 시작점 방문표시
+    while q:            # 큐가 비워질때까지...(남은 정점이 있으면)
+        t = q.pop(0)
+        # t에서 할 일....
+        print(t)
+        for i in adjl[t]:   # t에 인접인 정점
+            if visited[i] == 0:     # 방문하지 않은 정점이면
+                q.append(i)     # 인큐
+                visited[i] = 1 + visited[t]     # 방문표시
+    # print(visited)  # 거리 정보를 얻을 수 있음
+V, E = map(int, input().split())
 
-queue.append(1)
-queue.append(2)
-queue.append(3)
+arr = list(map(int, input().split()))
+# 인접 리스트 형태로 저장
+adjl = [[] for _ in range(V+1)] # 0번부터 V 번 까지 배열을 갖는 리스트를 생성
+for i in range(E):
+    n1, n2 = arr[i*2], arr[i*2+1]   # 2개의 쌍을 읽어내는 방법
+    adjl[n1].append(n2)
+    adjl[n2].append(n1)     # 무향그래프
 
-# print(queue.pop(0))
-# print(queue.pop(0))
-# print(queue.pop(0))
+bfs(1, V)
 
-while queue:
-    print(queue.pop(0))
 ```
+
+노드의 거리
+
 ```
-N = 10
-q = [0] * 10
-front = rear = -1
+'''
+3
+6 5
+1 4
+1 3
+2 3
+2 5
+4 6
+1 6 
+7 4
+1 6
+2 3
+2 6
+3 5
+2 5 
+9 9
+2 6
+4 7
+5 7
+1 5
+2 9
+3 9
+4 8
+5 3
+7 8
+1 9
+'''
+def bfs(s, N, G) :     # 시작정점 s, 노드 개수 N
+    q = []  # 큐 생성
+    visited = [0] * (N+1)   # visited 생성
+    q.append(s)         # 시작점 인큐
+    visited[s] = 1      # 인큐 표시
+    while q:            # 처리 안된 정점이 남아있으면
+        t = q.pop(0)    # 처리할 정점 디큐
+        if t == G:
+            return  visited[t] - 1    # 시작 점이 1부터 시작하기 때문에 간선 수를 나타내기 위해선 -1을 해줘야 함
+        for i in adjl[t]:           # t 의 인접 정점이
+            if visited[i]==0:           # 인큐되지 않았으면(처리된 적이 없으면)
+                q.append(i)
+                visited[i] = visited[t] + 1
+    return  0           # G까지 경로가 없는 경우
+T = int(input())
+for tc in range(T):
+    V, E = map(int, input().split())
 
-rear += 1       # enqueue(10)
-q[rear] = 10
+    # 인접 리스트 형태로 저장
+    adjl = [[] for _ in range(V+1)] # 0번부터 V 번 까지 배열을 갖는 리스트를 생성
+    for i in range(E):
+        n1, n2 = map(int, input().split())   # 2개의 쌍을 읽어내는 방법
+        adjl[n1].append(n2)
+        adjl[n2].append(n1)     # 무향그래프
+    S, G = map(int, input().split())
+    print(f'#{tc+1} {bfs(S, V, G)}')    # G 끝까지 가는 목적지
 
-rear += 1
-q[rear] = 20
 
-rear += 1
-q[rear] = 30
 
-while front != rear:    # 큐가 비어있지 않으면
-    front += 1
-    print(q[front])
 ```
 
-### **원형큐**
----
 
-**잘못된 포화상태 인식**
 
-- 선형 큐를 이용하여 원소의 삽입과 삭제를 계속할 경우, 배열의 앞 부분에 활용할 수 있는 공간이 있음에도 불구하고, rear = n-1 인 상태 즉, 포화상태로 인식하여 더 이상 삽입을 수행하지 않게 됨
 
-![](https://velog.velcdn.com/images/lurelight/post/245f6743-0b2a-40d5-b101-84d801c30112/image.png)
-
-
-**해결 방법**
-
-- 매 연산이 이루어질 때마다 저장된 원소들을 배열의 앞부분으로 모두 이동시킴
-
-- 원소 이동에 많은 시간이 소요되어 큐의 효율성이 급격히 떨어짐
-
-![](https://velog.velcdn.com/images/lurelight/post/00237ef7-491d-4c5b-8cb9-7286d6a2a062/image.png)
-
-**해결 방법 2**
-
-- 1차원 배열을 사용하되, 논리적으로는 배열의 처음과 끝이 연결되어 원형 형태의 큐를 이룬다고 가정하고 사용
-
-- 원형 큐의 논리적 구조
-
-![](https://velog.velcdn.com/images/lurelight/post/e19e3656-385d-40d4-8d04-e163bc6796ec/image.png)
-
-**초기 공백 상태**
-
-front = rear = 0
-
-**Index의 순환**
-
-front와 rear의 위치가 배열의 마지막 인덱스인 n-1을 가리킨 후, 그 다음에는 논리적 순환을 이루어 배열의 처음 인덱스인 0으로 이동해야 함
-
-이를 위해 나머지 연산자 mod를 사용함
-
-**front 변수**
-
-공백 상태와 포화 상태 구분을 쉽게 하기 위해 front 가 있는 자리는 사용하지 않고 항상 빈자리로 둠
-
-![](https://velog.velcdn.com/images/lurelight/post/52726412-306e-47c3-8ada-c70b970529a0/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/4ba43cf0-b96e-4960-aafe-bb2d77777367/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/61681236-2c0a-4c46-96ee-4503ba8fe403/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/4b85b419-412d-4a8a-ae26-f1fa1b292d27/image.png)
-
-6) front == (rear+1) // N
-
-**초기 공백 큐 생성**
-
-- 크기 n 인 1차원 배열 생성
-
-- front와 rear를 0으로 초기화
-
-**공백상태 및 포화상태 검사 : isEmpty(), isFull()**
-
-공백상태 : front == rear
-
-포화상태 : 삽입할 rear의 다음 위치 == 현재 front (front 비워두기 때문에)
-
-- (rear + 1) mod n == front
-
-![](https://velog.velcdn.com/images/lurelight/post/a74802b5-05f8-4f58-9efb-9a7a7334deb4/image.png)
-
-**삽입 : enQueue(item)**
-
-마지막 원소 뒤에 새로운 원소를 삽입하기 위해
-
-1) rear 값을 조정하여 새로운 원소를 삽입할 자리를 마련함 : rear <- (rear +1) mod n
-
-2) 그 인덱스에 해당하는 배열 원소 cQ[rear]에 item 저장
-
-![](https://velog.velcdn.com/images/lurelight/post/66a85010-d469-4179-ae27-667f91daff23/image.png)
-
-삭제 : deQueue(), delete()
-
-가장 앞에 있는 원소를 삭제하기 위해
-
-1) front 값을 조정하여 삭제할 자리를 준비함
-
-2) 새로운 front 원소를 리턴 함으로써 삭제와 동리한 기능함
-
-![](https://velog.velcdn.com/images/lurelight/post/488ffd2c-47bb-4d65-a515-33c6d0255cd7/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/1c14154b-3f18-4832-9b5c-2551eed0d0bc/image.png)
-
-### **연결 큐**
----
-
-**단순 연결 리스트(Linked list)를 이용한 큐**
-
-큐의 원소 : 단순 연결 리스트의 노드
-
-큐의 원소 순서 : 노드의 연결 순서, 링크로 연결되어 있음
-
-front : 첫 번째 노드를 가리키는 링크
-
-rear : 마지막 노드를 가리키는 링크
-
-**상태 표현**
-
-초기 상태 : front = rear = null
-
-공백 상태 : front = rear = null
-
-![](https://velog.velcdn.com/images/lurelight/post/a87ed893-f604-4f51-b30d-18c957c5b41b/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/7baeeb5a-ecd1-402c-a957-f191037e4728/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/c6853a87-ee71-476f-9965-5c5f61db4136/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/75b670a4-ea0f-4ef2-8807-e96052444aab/image.png)
-
-**deque(덱)**
-
-컨테이너 자료형 중 하나
-
-**deque 객체**
-
-- 양쪽 끝에서 추가와 삭제를 할 수 있는 리스트류 컨테이너
-
-**연산** 
-
-- append(x) : 오른쪽에 x 추가
-
-- popleft(): 왼쪽에서 요소를 제거하고 반환, 요소가 없으면 IndexError
-
-![](https://velog.velcdn.com/images/lurelight/post/647b6f02-e863-423e-babf-a32730740e50/image.png)
-
-덱과 리스트 선형 큐는 비슷함. but, 작업 속도는 append()와 pop() 대비 엄청 빠름.
-
-### **우선순위 큐(Priority Queue)**
----
-
-**우선순위 큐의 특성**
-
-우선 순위를 가진 항목들을 저장하는 큐
-
-FIFO 순서가 아니라 우선순위가 높은 순서대로 먼저 나가게 된다.
-
-**우선순위 큐의 적용 분야**
-
-시뮬레이션 시스템
-
-네트워크 트래픽 제어
-
-운영체제의 테스크 스케줄링
-
-**우선순위 큐의 구현**
-
-배열을 이용한 우선순위 큐
-
-리스트를 이용한 우선순위 큐
-
-![](https://velog.velcdn.com/images/lurelight/post/85e4ac1c-4302-4340-ae0e-0f98da74d72e/image.png)
-
-**배열을 이용하여 우선순위 큐 구현**
-
-배열을 이용하여 자료 저장
-
-원소를 삽입하는 과정에서 우선순위를 비교하여 적절한 위치에 삽입하는 구조
-
-가장 앞에 최고 우선순위의 원소가 위치하게 됨
-
-**문제점**
-
-배열을 사용하므로, 삽입이나 삭제 연산이 일어날 때 원소의 재배치가 발생함
-
-이에 소요되는 시간이나 메모리 낭비가 큼
-
-### **버퍼**
----
-
-**버퍼**
-
-데이터를 한 곳에서 다른 한 곳으로 전송하는 동안 일시적으로 그 데이터를 보관하는 메모리의 영역
-
-버퍼링 : 버퍼를 활용하는 방식 또는 버퍼를 채우는 동작을 의미한다.
-
-**버퍼의 자료구조**
-
-버퍼는 일반적으로 입출력 및 네트워크와 관련된 기능에서 이용된다.
-
-순서대로 입력/출력/전달되어야 하므로 FIFO 방식의 자료구조인 큐가 활용된다.
-
-![](https://velog.velcdn.com/images/lurelight/post/333fa330-220f-402a-8136-a0d357ad50dd/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/1c95076e-f624-49eb-86e8-42a72ea96c77/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/85676bc9-1a99-4429-8aea-bdfc9c5760b0/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/1b23599a-4761-4703-91b9-2ebb8a15b8a1/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/adb7efaf-16fa-4f08-baa2-4c6d1825c296/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/3ad77835-82ff-4eeb-9712-5409ed1fb3da/image.png)
-
-![](https://velog.velcdn.com/images/lurelight/post/9735061e-53f3-46e6-9f07-688a0829031e/image.png)
 
 
