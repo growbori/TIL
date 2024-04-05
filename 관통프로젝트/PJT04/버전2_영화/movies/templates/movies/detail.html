@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand text-white" href="{% url "movies:index" %}">SSAFY</a>
+              <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="{% url "movies:index" %}">INDEX</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+      </nav>
+</header>
+<p></p>
+<h1>Detail Page</h1>
+<hr>
+<h2>{{movie.title}}</h2>
+<h3>{{movie.content}}</h3>
+<hr>
+<a class="btn btn-secondary" href="{% url "movies:edit" movie.pk %}" role="button">UPDATE</a>
+<a class="btn btn-danger" href="{% url "movies:delete" movie.pk%}" role="button">DELETE</a>
+<hr>
+
+<a class="btn btn-primary" href="{% url "movies:index" %}">BACK</a>
+{% endblock content %}
