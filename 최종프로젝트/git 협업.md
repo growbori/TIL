@@ -22,4 +22,4 @@ master가 삭제할 때 문구
 
 git push origin -d (branch 명)
 
-
+merge는 vscode에서 pull후 확인하는게 좋음!
